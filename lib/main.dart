@@ -27,6 +27,9 @@ var titlecounter=1;
 var contextcounter=0;
 var Buttoncounter1=0;
 var Buttoncounter2=1;
+bool isvalued=false;
+
+
 final _messangerKey = GlobalKey<ScaffoldMessengerState>();
 class _MyAppState extends State<MyApp>{
   @override
@@ -36,14 +39,21 @@ class _MyAppState extends State<MyApp>{
       MaterialApp(
           scaffoldMessengerKey: _messangerKey,
           home: Scaffold(
-            appBar: AppBar(title: Text('圖像心理測驗'),backgroundColor: Colors.grey[800],),
+            appBar: AppBar(title: Text('圖像心理測驗',style: TextStyle(color: isvalued? Colors.black:Colors.white),),
+              actions: [Switch(
+                activeColor: Colors.yellow[800],
+                  value: isvalued,
+                  onChanged:(value){
+                  setState(() {
+                    isvalued=!isvalued;});})],
+              backgroundColor:isvalued? Colors.yellow[500]:Colors.grey[800]),
             body:Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
 
                   Container(
-                    color: Colors.grey,
+                    color:isvalued? Colors.yellow[100]:Colors.grey,
                     height: 200,width: 380,
                     alignment: Alignment.center,
                     child:titlecounter==1?
@@ -53,7 +63,7 @@ class _MyAppState extends State<MyApp>{
 
                     ElevatedButton(
                       style:ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(Colors.grey),
+                        backgroundColor:isvalued? MaterialStateProperty.all(Colors.yellow[100]):MaterialStateProperty.all(Colors.grey),
                         elevation: MaterialStateProperty.all(0),
                       ),
                       child:Ink.image(
@@ -108,8 +118,8 @@ class _MyAppState extends State<MyApp>{
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children:<Widget>[
                       ElevatedButton(
-                        style: myButtonStyle,
-                        child:Text(ButtonText[Buttoncounter1],style: TextStyle(fontSize: 30),),
+                        style: isvalued? myButtonStyle:myButtonStyle2,
+                        child:Text(ButtonText[Buttoncounter1],style: TextStyle(fontSize: 30,color: isvalued?Colors.black:Colors.grey[400]),),
                         onPressed:(){
                           setState(() {
                             titlecounter=0;
@@ -117,8 +127,8 @@ class _MyAppState extends State<MyApp>{
                           });
                         },),
                       ElevatedButton(
-                        style: myButtonStyle,
-                        child:Text(ButtonText[Buttoncounter2],style: TextStyle(fontSize: 30),),
+                        style:isvalued? myButtonStyle:myButtonStyle2,
+                        child:Text(ButtonText[Buttoncounter2],style: TextStyle(fontSize: 30,color: isvalued?Colors.black:Colors.grey[400]),),
                         onPressed:(){
                           setState(() {
                             titlecounter=0;
@@ -131,7 +141,7 @@ class _MyAppState extends State<MyApp>{
 
                 ],),),
 
-            backgroundColor: Colors.grey,
+            backgroundColor:isvalued? Colors.yellow[100]:Colors.grey
           )
       );
 
@@ -148,7 +158,19 @@ class MyApp extends StatefulWidget{
 final ButtonStyle myButtonStyle = ElevatedButton.styleFrom(
   primary: Colors.black,
   onPrimary: Colors.black,
-  backgroundColor: Colors.yellow[600],
+  backgroundColor:Colors.yellow,
+  minimumSize: Size(88, 36),
+  elevation: 10,
+  padding: EdgeInsets.symmetric(horizontal: 16),
+  shape: const RoundedRectangleBorder(
+    borderRadius: BorderRadius.all(Radius.circular(2)),
+
+  ),
+);
+final ButtonStyle myButtonStyle2 = ElevatedButton.styleFrom(
+  primary: Colors.black,
+  onPrimary: Colors.black,
+  backgroundColor:Colors.grey[600],
   minimumSize: Size(88, 36),
   elevation: 10,
   padding: EdgeInsets.symmetric(horizontal: 16),

@@ -4,13 +4,7 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+這是一個心理測試的小遊戲，請憑直覺選出第一個答案。
+你所選擇的答案之結果，將會顯示於圖片上方
+圖片下方箭頭按鈕可以切換圖片及重置文字
+右上角提供更改明暗背景的按鈕
